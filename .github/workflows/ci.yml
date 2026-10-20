@@ -1,0 +1,23 @@
+name: CreditBridge-DV CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  directed-verification:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install open-source simulator
+        run: sudo apt-get update && sudo apt-get install -y verilator
+      - name: Lint RTL and assertions
+        run: make lint
+      - name: Run directed regression
+        run: make regression
+      - name: Upload simulation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: directed-verification-evidence
+          path: results/latest/

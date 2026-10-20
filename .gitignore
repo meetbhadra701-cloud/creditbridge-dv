@@ -1,0 +1,15 @@
+# Generated simulation artefacts
+build/
+results/latest/
+.toolcache/
+*.vcd
+*.fst
+*.log
+coverage.dat
+*.ucdb
+*.wlf
+
+# Editor and operating-system files
+.DS_Store
+.vscode/
+*~
